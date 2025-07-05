@@ -1,0 +1,503 @@
+/* H4ckLabs Theme */
+:root {
+    --hacklab-green: #00ff00;
+    --hacklab-green-darker: #00b700;
+    --hacklab-dark: #0a0a0a;
+    --hacklab-dark-lighter: #121212;
+    --hacklab-card:#242424;
+    --bulma-primary-h: 100deg;
+}
+
+html{
+    background-color: var(--hacklab-dark);
+}
+
+body {
+    background-color: var(--hacklab-dark);
+    color: white;
+    font-family: 'Courier New', monospace;
+}
+
+.publicar{
+    color: var(--hacklab-green);
+    font-size: 1.4rem;
+    padding: 2rem;
+
+}
+
+.a-reg{
+    color: var(--hacklab-green);
+}
+
+
+.navbar {
+    background-color: var(--hacklab-dark);
+    padding: 1rem 2rem;
+}
+
+.navbar-item {
+    color: white;
+    font-weight: 500;
+}
+
+.navbar-item:hover {
+    background-color: transparent !important;
+    color: var(--hacklab-green) !important;
+}
+
+.navbar-brand .navbar-item {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.button.is-login {
+    background-color: transparent;
+    border: 2px solid var(--hacklab-green);
+    color: var(--hacklab-green);
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.button.is-login:hover {
+    background-color: var(--hacklab-green);
+    color: var(--hacklab-dark);
+}
+
+/* Hero Section Styles */
+.hacklab-hero {
+    background-color: var(--hacklab-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.hacklab-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url(/img/hacker.png);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.terminal-text {
+    color: var(--hacklab-green);
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.terminal-prompt {
+    color: var(--hacklab-green);
+}
+
+.terminal-cursor {
+    color: var(--hacklab-green);
+    margin-left: 0.5rem;
+
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-chevron {
+    color: var(--hacklab-green);
+        animation: blink 1s step-end infinite;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #b0b0b0;
+}
+
+/* Custom Hacklab Button */
+.button.is-hacklab-primary {
+    background-color: transparent;
+    color: var(--hacklab-dark);
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+    transition: all 0.3s ease;
+}
+
+.navbar-item.is-active{
+    background-color: transparent;
+    border: 1px solid var(--hacklab-green);
+}
+
+.button.is-hacklab-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--hacklab-green);
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.button.is-hacklab-primary:hover {
+    color: var(--hacklab-dark);
+    transform: translateY(-2px);
+}
+
+.button.is-hacklab-secondary {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.button.is-hacklab-secondary:hover {
+    color: var(--hacklab-green);
+    background-color: transparent;
+}
+
+.hacklab-hero {
+    background-color: var(--hacklab-dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 650px; /* Fixed height instead of fullheight */
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.hacklab-hero .hero-body {
+    padding-top: 4rem; /* Reduced top padding */
+
+    width: 100%;
+}
+
+.card{
+    background-color: var(--hacklab-card);
+}
+
+.footer {
+    background-color: var(--hacklab-dark-lighter);
+    padding: 1rem 1.5rem; 
+    height: 60px; 
+}
+
+/* Additional styles for completed machines page */
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    background-color: #121212;
+    border-radius: 6px;
+    padding: 1rem;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.pagination-previous,
+.pagination-next,
+.pagination-link {
+    background-color: #1a1a1a;
+    border-color: #333;
+    color: #b0b0b0;
+}
+
+.pagination-link.is-current {
+    background-color: var(--hacklab-green);
+    color: #121212;
+    border-color: var(--hacklab-green);
+}
+
+.pagination-previous:hover,
+.pagination-next:hover,
+.pagination-link:hover {
+    background-color: #333;
+    color: var(--hacklab-green);
+}
+
+.pagination-ellipsis {
+    color: #666;
+}
+
+/* Additional attack type tags */
+.attack-tag.privesc {
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.attack-tag.network {
+    background-color: rgba(0, 255, 127, 0.2);
+    color: #00ff7f;
+    border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.attack-tag.mobile {
+    background-color: rgba(255, 20, 147, 0.2);
+    color: #ff1493;
+    border: 1px solid rgba(255, 20, 147, 0.3);
+}
+
+.attack-tag.ai {
+    background-color: rgba(138, 43, 226, 0.2);
+    color: #8a2be2;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.attack-tag.mixed {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Additional OS tags */
+.os-tag.android {
+    background-color: rgba(164, 198, 57, 0.2);
+    color: #a4c639;
+    border: 1px solid rgba(164, 198, 57, 0.3);
+}
+
+/* Machine card hover effects enhancement */
+.machine-card:hover .machine-icon i {
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.machine-card:hover .machine-name {
+    color: var(--hacklab-green);
+    transition: color 0.3s ease;
+}
+
+/* Loading state for machines */
+.machine-card.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.machine-card.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--hacklab-green);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.machine-detail-section {
+    background-color: var(--hacklab-dark);
+    padding: 3rem 0;
+}
+
+.machine-detail-section .title {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+}
+
+.machine-detail-section .title.has-text-white {
+    color: white;
+}
+
+/* Details List Styling */
+.machine-details-list {
+    margin: 2rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.machine-details-list dt {
+    color: var(--hacklab-green);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.machine-details-list dd {
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    font-size: 0.95rem;
+}
+
+.machine-ip {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    background-color: rgba(0, 255, 0, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Custom Divider */
+.hacklab-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hacklab-green), transparent);
+    margin: 2rem 0;
+}
+
+/* Machine Description */
+.machine-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 255, 0, 0.05);
+    border-left: 3px solid var(--hacklab-green);
+    border-radius: 0 4px 4px 0;
+}
+
+/* Skills Container */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.skill-tag {
+    background-color: rgba(0, 191, 255, 0.2);
+    color: #00bfff;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+/* Machine Status in Details */
+.machine-status {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.machine-status.active {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: var(--hacklab-green);
+}
+
+.machine-status.retired {
+    background-color: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+}
+
+.machine-status.coming-soon {
+    background-color: rgba(100, 100, 100, 0.2);
+    color: #888;
+}
+
+.machine-status .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+.machine-status.active .status-dot {
+    background-color: var(--hacklab-green);
+}
+
+.machine-status.retired .status-dot {
+    background-color: #ffa500;
+}
+
+.machine-status.coming-soon .status-dot {
+    background-color: #888;
+}
+
+/* Tags in Details */
+.difficulty-tag, .attack-tag, .os-tag {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+}
+
+.difficulty-tag.easy, .difficulty-tag.fácil {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.difficulty-tag.medium, .difficulty-tag.medio {
+    background-color: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.difficulty-tag.hard, .difficulty-tag.difícil {
+    background-color: rgba(255, 69, 0, 0.2);
+    color: #ff4500;
+    border: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.difficulty-tag.insane, .difficulty-tag.insano {
+    background-color: rgba(255, 0, 255, 0.2);
+    color: #ff00ff;
+    border: 1px solid rgba(255, 0, 255, 0.3);
+}
+
+.attack-tag {
+    background-color: rgba(0, 191, 255, 0.2);
+    color: #00bfff;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.os-tag {
+    background-color: rgba(128, 128, 128, 0.2);
+    color: #888;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+/* Action Section */
+.action-section {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+/* Button Overrides */
+.button.is-light {
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+.button.is-light:hover {
+    background-color: #444;
+    color: white;
+}
+
+
