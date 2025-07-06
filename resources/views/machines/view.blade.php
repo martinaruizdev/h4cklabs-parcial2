@@ -13,7 +13,7 @@
 
               <dl class="machine-details-list">
                 <dt class="has-text-weight-bold has-text-hacklab-green">Dificultad:</dt>
-                <dd class="has-text-white">{{ $machine->difficulty }}</dd>
+                <dd class="has-text-white">{{ $machine->difficulty->name }}</dd>
 
                 <dt class="has-text-weight-bold has-text-hacklab-green">Tipo de Ataque:</dt>
                 <dd class="has-text-white">{{ $machine->attack_type }}</dd>
@@ -33,11 +33,15 @@
               <h2 class="title is-4 has-text-white">Descripción</h2>
               <div class="machine-description has-text-grey-light">{{ $machine->description }}</div>
 
-              <div class="action-section mt-6">
-                <a href="{{ route('machines.index') }}" class="button is-light ml-3">
+              <div class="buttons-container mt-6">
+                <a href="{{ route('auth.login') }}" class="button is-hacklab-primary">
+                  Empieza a Hackear
+                </a>
+                <a href="{{ route('machines.index') }}" class="button is-light ml-3 mt-2">
                   <span>Volver a Máquinas</span>
                 </a>
               </div>
+              
             </div>
           </div>
         </div>

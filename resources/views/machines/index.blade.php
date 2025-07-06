@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ $machine->machine_id }}</td>
                 <td>{{ $machine->name }}</td>
-                <td>{{ $machine->difficulty }}</td>
+                <td>{{ $machine->difficulty->name }}</td>
                 <td>{{ $machine->attack_type }}</td>
                 <td>{{ $machine->os }}</td>
                 <td>{{ $machine->status }}</td>
@@ -50,7 +50,7 @@
             <div class="card">
                 <div class="card-content">
                     <p class="title is-4 mb-2">{{ $machine->name }}</p>
-                    <p class="subtitle is-6 mb-2">{{ $machine->difficulty }} | {{ $machine->attack_type }} | {{ $machine->os }}</p>
+                    <p class="subtitle is-6 mb-2">{{  $machine->difficulty->name }} | {{ $machine->attack_type }} | {{ $machine->os }}</p>
                     <p class="mb-3"><strong>Estado:</strong> {{ strtoupper($machine->status) }}</p>
                     <p class="mb-4">{{ Str::limit($machine->description, 100) }}</p>
                     <a href="{{ route('machines.view', [ 'id' => $machine->machine_id ]) }}" class="button is-primary is-fullwidth">Ver Más</a>

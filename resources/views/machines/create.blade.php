@@ -46,14 +46,20 @@
               </div>
 
               <div class="field mb-5">
-                <label for="difficulty" class="form-label has-text-white label">Dificultad</label>
-                <input
-                  type="text"
-                  name="difficulty"
-                  id="difficulty"
+                <label for="difficulty_fk" class="form-label has-text-white label">Dificultad</label>
+                <select
+                  name="difficulty_fk"
+                  id="difficulty_fk"
                   class="form-control @error('difficulty') is-invalid @enderror input hacklab-input"
-                  value="{{ old('difficulty') }}"
                   @error('difficulty') aria-invalid="true" aria-errormessage="error-difficulty" @enderror>
+                  
+                  @foreach ( $difficulties as $difficulty )
+                    <option value="{{ $difficulty->difficulty_id }}" @selected($difficulty->difficulty_id == old('difficulty_fk')) >
+                      {{ $difficulty->name }}
+                    </option>
+                  @endforeach
+
+                </select>
                 @error('difficulty')
                 <div id="error-difficulty" class="has-text-danger">{{ $message }}</div>
                 @enderror

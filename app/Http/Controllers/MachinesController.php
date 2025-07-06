@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Difficulty;
 use App\Models\Machine;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class MachinesController extends Controller
 {
     public function index()
     {
-        $machines = Machine::all();
+        $machines = Machine::with(['difficulty'])->get();
 
         return view('machines.index', [
             'machines' => $machines
@@ -25,7 +26,9 @@ class MachinesController extends Controller
 
     public function create()
     {
-        return view('machines.create');
+        return view('machines.create',[
+           'difficulties' => Difficulty::all()
+        ]);
     }
 
     public function store(Request $request)
@@ -33,7 +36,6 @@ class MachinesController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
-            'difficulty' => 'required|min:3',
             'attack_type' => 'required|min:3',
             'os' => 'required|min:2',
             'status' => 'required|min:3',
@@ -42,8 +44,6 @@ class MachinesController extends Controller
             'name.min' => 'El nombre debe tener al menos :min caracteres',
             'description.required' => 'La descripción no puede estar vacía',
             'description.min' => 'La descripción debe tener al menos :min caracteres',
-            'difficulty.required' => 'Debe ingresar la dificultad',
-            'difficulty.min' => 'La dificultad debe tener al menos :min caracteres',
             'attack_type.required' => 'Debe ingresar el tipo de ataque',
             'attack_type.min' => 'El tipo de ataque debe tener al menos :min caracteres',
             'os.required' => 'Debe ingresar el sistema operativo',
@@ -79,7 +79,8 @@ class MachinesController extends Controller
     public function edit(int $machine_id)
     {
         return view('machines.edit', [
-            'machine' => Machine::findOrFail($machine_id)
+            'machine' => Machine::findOrFail($machine_id),
+            'difficulties' => Difficulty::all()
         ]);
     }
 
@@ -88,7 +89,6 @@ class MachinesController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
-            'difficulty' => 'required|min:3',
             'attack_type' => 'required|min:3',
             'os' => 'required|min:2',
             'status' => 'required|min:3',
@@ -97,8 +97,6 @@ class MachinesController extends Controller
             'name.min' => 'El nombre debe tener al menos :min caracteres',
             'description.required' => 'La descripción no puede estar vacía',
             'description.min' => 'La descripción debe tener al menos :min caracteres',
-            'difficulty.required' => 'Debe ingresar la dificultad',
-            'difficulty.min' => 'La dificultad debe tener al menos :min caracteres',
             'attack_type.required' => 'Debe ingresar el tipo de ataque',
             'attack_type.min' => 'El tipo de ataque debe tener al menos :min caracteres',
             'os.required' => 'Debe ingresar el sistema operativo',

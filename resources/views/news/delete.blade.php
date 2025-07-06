@@ -4,7 +4,7 @@
 
     <h1 class="title">Confirmacion para eliminar {{ $new->title }}</h1>
     <p>Estás a punto de eliminar la noticia {{ $new->title }}</p>
-    <p>¿Estás seguro de que deseas eliminarla? Esta acción es <strong>permanente y no se puede deshacer</strong> (ni con el poderoso ctrl z). </p>
+    <p>¿Estás seguro de que deseas eliminarla? Esta acción es <span class="has-text-danger has-text-weight-bold" >permanente y no se puede deshacer</span> (ni con el poderoso ctrl z). </p>
 
     <form action="{{ route('news.destroy', ['id' => $new->new_id]) }}"
     method="post"

@@ -4,7 +4,7 @@
 
     <h1 class="title">Confirmación para eliminar {{ $machine->name }}</h1>
     <p>Estás a punto de eliminar la máquina <strong>{{ $machine->name }}</strong>.</p>
-    <p>¿Estás seguro de que deseas eliminarla? Esta acción es <strong>permanente y no se puede deshacer</strong> (ni con el poderoso ctrl + z).</p>
+    <p>¿Estás seguro de que deseas eliminarla? Esta acción es <span class="has-text-danger has-text-weight-bold" >permanente y no se puede deshacer</span> (ni con el poderoso ctrl + z).</p>
 
     <form action="{{ route('machines.destroy', ['id' => $machine->machine_id]) }}"
           method="post"
@@ -17,7 +17,7 @@
 
     <dl class="mb-3">
         <dt class="has-text-weight-bold">Dificultad</dt>
-        <dd>{{ $machine->difficulty }}</dd>
+        <dd>{{ $machine->difficulty->name }}</dd>
 
         <dt class="has-text-weight-bold">Tipo de Ataque</dt>
         <dd>{{ $machine->attack_type }}</dd>

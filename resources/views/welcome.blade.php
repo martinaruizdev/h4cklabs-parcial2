@@ -19,11 +19,11 @@
                     
                     <p class="hero-subtitle mb-6">
                         Aprende ciberseguridad y hacking ético en un entorno controlado con
-                        H4ckLabs. Cursos, CTF, certificados y mucho más.
+                        H4ckLabs. Máquinas CTF, cursos, certificados y mucho más.
                     </p>
                     
                     <div class="buttons-container">
-                        <a href="#" class="button is-hacklab-primary">
+                        <a href="{{ route('auth.login') }}" class="button is-hacklab-primary">
                             Empieza a Hackear
                         </a>
                         <a href="{{ route('about') }}" class="button is-hacklab-secondary ml-4">
