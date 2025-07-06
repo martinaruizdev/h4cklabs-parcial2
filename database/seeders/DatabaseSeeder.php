@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             NewSeeder::class,
             DifficultySeeder::class,
-            MachineSeeder::class
+            MachineSeeder::class,
+            AttackTypeSeeder::class
         ]);
     }
 }
