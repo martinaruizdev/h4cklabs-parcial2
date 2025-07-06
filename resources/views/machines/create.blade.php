@@ -65,6 +65,17 @@
                 @enderror
               </div>
 
+              <fieldset class="mb-5">
+                <legend class="form-label has-text-white label">Tipo de Ataque</legend>
+                @foreach ( $attack_types as $attack_type )
+                  <label class="form-label has-text-white label">
+                    <input type="checkbox" name="attack_type_id[]" value="{{ $attack_type->attack_type_id }}">
+                    {{ $attack_type->name }}
+                  </label>
+                  @endforeach
+              </fieldset>
+
+
               <div class="field mb-5">
                 <label for="attack_type" class="form-label has-text-white label">Tipo de Ataque</label>
                 <input

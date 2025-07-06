@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttackType;
 use App\Models\Difficulty;
 use App\Models\Machine;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class MachinesController extends Controller
 {
     public function index()
     {
-        $machines = Machine::with(['difficulty'])->get();
+        $machines = Machine::with(['difficulty', 'attack_types'])->get();
 
         return view('machines.index', [
             'machines' => $machines
@@ -27,7 +28,8 @@ class MachinesController extends Controller
     public function create()
     {
         return view('machines.create',[
-           'difficulties' => Difficulty::all()
+           'difficulties' => Difficulty::all(),
+           'attack_types' => AttackType::orderBy('name')->get()
         ]);
     }
 

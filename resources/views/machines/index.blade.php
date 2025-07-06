@@ -3,7 +3,7 @@
 
     <h1 class="title is-2 my-4 has-text-centered">Máquinas Disponibles</h1>
 
-    @auth
+    @auth     <!------------------- start auth-------------------------->
     <p><a href="{{ route('machines.create') }}" class="publicar">Crear una máquina</a></p>
 
     <table class="table mt-4">
@@ -25,7 +25,11 @@
                 <td>{{ $machine->machine_id }}</td>
                 <td>{{ $machine->name }}</td>
                 <td>{{ $machine->difficulty->name }}</td>
-                <td>{{ $machine->attack_type }}</td>
+                <td>
+                    @foreach ( $machine->attack_types as $attack_type )
+                        <span class="tag is-dark has-text-weight-semibold">{{ $attack_type->name }}</span>
+                    @endforeach
+                </td>
                 <td>{{ $machine->os }}</td>
                 <td>{{ $machine->status }}</td>
                 <td>{{ Str::limit($machine->description, 80) }}</td>
@@ -41,7 +45,8 @@
         </tbody>
     </table>
 
-    @else
+    @else  <!---------------------- end auth ------------------------->
+
     <h2 class="subtitle is-4 my-6 has-text-centered">Elige una máquina y pon a prueba tus habilidades</h2>
 
     <div class="columns is-multiline my-3">
@@ -50,10 +55,12 @@
             <div class="card">
                 <div class="card-content">
                     <p class="title is-4 mb-2">{{ $machine->name }}</p>
-                    <p class="subtitle is-6 mb-2">{{  $machine->difficulty->name }} | {{ $machine->attack_type }} | {{ $machine->os }}</p>
+                    <p class="subtitle is-6 mb-2">{{  $machine->difficulty->name }} |  @foreach ( $machine->attack_types as $attack_type )
+                        <span class="tag is-dark has-text-weight-semibold">{{ $attack_type->name }}</span>
+                    @endforeach | {{ $machine->os }}</p>
                     <p class="mb-3"><strong>Estado:</strong> {{ strtoupper($machine->status) }}</p>
                     <p class="mb-4">{{ Str::limit($machine->description, 100) }}</p>
-                    <a href="{{ route('machines.view', [ 'id' => $machine->machine_id ]) }}" class="button is-primary is-fullwidth">Ver Más</a>
+                    <a href="{{ route('machines.view', [ 'id' => $machine->machine_id ]) }}" class="button is-primary is-fullwidth has-text-weight-semibold">Ver Más</a> 
                 </div>
             </div>
         </div>
