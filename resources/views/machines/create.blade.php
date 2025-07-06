@@ -50,8 +50,8 @@
                 <select
                   name="difficulty_fk"
                   id="difficulty_fk"
-                  class="form-control @error('difficulty') is-invalid @enderror input hacklab-input"
-                  @error('difficulty') aria-invalid="true" aria-errormessage="error-difficulty" @enderror>
+                  class="form-control input hacklab-input"
+                  >
                   
                   @foreach ( $difficulties as $difficulty )
                     <option value="{{ $difficulty->difficulty_id }}" @selected($difficulty->difficulty_id == old('difficulty_fk')) >
@@ -60,7 +60,7 @@
                   @endforeach
 
                 </select>
-                @error('difficulty')
+                @error('difficulty_fk')
                 <div id="error-difficulty" class="has-text-danger">{{ $message }}</div>
                 @enderror
               </div>
@@ -74,21 +74,6 @@
                   </label>
                   @endforeach
               </fieldset>
-
-
-              <div class="field mb-5">
-                <label for="attack_type" class="form-label has-text-white label">Tipo de Ataque</label>
-                <input
-                  type="text"
-                  name="attack_type"
-                  id="attack_type"
-                  class="form-control @error('attack_type') is-invalid @enderror input hacklab-input"
-                  value="{{ old('attack_type') }}"
-                  @error('attack_type') aria-invalid="true" aria-errormessage="error-attack_type" @enderror>
-                @error('attack_type')
-                <div id="error-attack_type" class="has-text-danger">{{ $message }}</div>
-                @enderror
-              </div>
 
               <div class="field mb-5">
                 <label for="os" class="form-label has-text-white label">Sistema Operativo</label>

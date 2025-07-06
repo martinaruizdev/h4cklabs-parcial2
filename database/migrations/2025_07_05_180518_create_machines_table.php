@@ -16,7 +16,6 @@ return new class extends Migration
 
             $table->string('name', 100);
             $table->text('description');
-            $table->string('attack_type', 100);
             $table->string('os', 50);
             $table->string('status', 50);
 

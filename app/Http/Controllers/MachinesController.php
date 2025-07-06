@@ -38,7 +38,7 @@ class MachinesController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
-            'attack_type' => 'required|min:3',
+            'attack_type_id' => 'required',
             'os' => 'required|min:2',
             'status' => 'required|min:3',
         ], [
@@ -46,15 +46,17 @@ class MachinesController extends Controller
             'name.min' => 'El nombre debe tener al menos :min caracteres',
             'description.required' => 'La descripción no puede estar vacía',
             'description.min' => 'La descripción debe tener al menos :min caracteres',
-            'attack_type.required' => 'Debe ingresar el tipo de ataque',
-            'attack_type.min' => 'El tipo de ataque debe tener al menos :min caracteres',
+            'attack_type_id.required' => 'Debe ingresar el tipo de ataque',
             'os.required' => 'Debe ingresar el sistema operativo',
             'os.min' => 'El sistema operativo debe tener al menos :min caracteres',
             'status.required' => 'Debe ingresar el estado',
             'status.min' => 'El estado debe tener al menos :min caracteres',
         ]);
 
-        Machine::create($request->all());
+        $input = $request->all();
+
+        $machine = Machine::create($input);
+        $machine->attack_types()->attach($input['attack_type_id']);
 
         return redirect()
             ->route('machines.index')
