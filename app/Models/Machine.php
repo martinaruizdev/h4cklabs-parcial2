@@ -12,7 +12,7 @@ class Machine extends Model
 
     protected $primaryKey = 'machine_id';
 
-    protected $fillable = ['name', 'description', 'attack_type', 'os', 'status', 'difficulty_fk'];
+    protected $fillable = ['name', 'description', 'attack_type', 'os', 'status', 'difficulty_fk', 'image'];
 
     public function difficulty(): BelongsTo{
         return $this->belongsTo(Difficulty::class, 'difficulty_fk', 'difficulty_id');

@@ -31,14 +31,20 @@
               <hr class="hacklab-divider">
 
               <h2 class="title is-4 has-text-white">Descripción</h2>
-              <div class="machine-description has-text-grey-light">{{ $machine->description }}</div>
+              <div class="machine-description has-text-grey-light">
+                {{ $machine->description }}
+
+              <figure class="image mt-3" >
+                <img class="mt-3" src="{{ \Illuminate\Support\Facades\Storage::url($machine->image) }}" alt="{{ $machine->name }}" >
+              </figure>
+              </div>
 
               <div class="buttons-container mt-6">
                 <a href="{{ route('auth.login') }}" class="button is-hacklab-primary">
                   Empieza a Hackear
                 </a>
                 <a href="{{ route('machines.index') }}" class="button is-light ml-3 mt-2">
-                  <span>Volver a Máquinas</span>
+                  <span>Volver Atrás</span>
                 </a>
               </div>
               

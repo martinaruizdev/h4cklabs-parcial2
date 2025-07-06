@@ -16,7 +16,7 @@
             <h1 class="title has-text-white mb-5">
               <span class="has-text-hacklab-green">&gt;</span> Crear Máquina
             </h1>
-            <form action="{{ route('machines.store') }}" method="post">
+            <form action="{{ route('machines.store') }}" method="post" enctype="multipart/form-data">
               @csrf
 
               <div class="field mb-5">
@@ -50,13 +50,12 @@
                 <select
                   name="difficulty_fk"
                   id="difficulty_fk"
-                  class="form-control input hacklab-input"
-                  >
-                  
+                  class="form-control input hacklab-input">
+
                   @foreach ( $difficulties as $difficulty )
-                    <option value="{{ $difficulty->difficulty_id }}" @selected($difficulty->difficulty_id == old('difficulty_fk')) >
-                      {{ $difficulty->name }}
-                    </option>
+                  <option value="{{ $difficulty->difficulty_id }}" @selected($difficulty->difficulty_id == old('difficulty_fk')) >
+                    {{ $difficulty->name }}
+                  </option>
                   @endforeach
 
                 </select>
@@ -68,11 +67,11 @@
               <fieldset class="mb-5">
                 <legend class="form-label has-text-white label">Tipo de Ataque</legend>
                 @foreach ( $attack_types as $attack_type )
-                  <label class="form-label has-text-white label">
-                    <input type="checkbox" name="attack_type_id[]" value="{{ $attack_type->attack_type_id }}">
-                    {{ $attack_type->name }}
-                  </label>
-                  @endforeach
+                <label class="form-label has-text-white label">
+                  <input type="checkbox" name="attack_type_id[]" value="{{ $attack_type->attack_type_id }}" @checked(in_array($attack_type->attack_type_id, old('attack_type_id',[])))>
+                  {{ $attack_type->name }}
+                </label>
+                @endforeach
               </fieldset>
 
               <div class="field mb-5">
@@ -101,6 +100,16 @@
                 @error('status')
                 <div id="error-status" class="has-text-danger">{{ $message }}</div>
                 @enderror
+              </div>
+
+              <div class="field mb-5">
+                <label for="image" class="form-label has-text-white label">Imagen</label>
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  class="form-control input hacklab-input"
+                  >
               </div>
 
               <button type="submit" class="button is-primary button is-hacklab-primary is-fullwidth mt-6">Crear Máquina</button>

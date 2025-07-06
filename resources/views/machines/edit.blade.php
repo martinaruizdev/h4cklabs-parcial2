@@ -1,3 +1,6 @@
+<?php
+$attacktypeIds = $machine->attack_types->pluck('attack_type_id')->all();
+?>
 <x-layout>
   <x-slot:title>Editar la máquina {{ $machine->name }}</x-slot:title>
 
@@ -16,7 +19,7 @@
             <h1 class="title has-text-white mb-5">
               <span class="has-text-hacklab-green">&gt;</span>Editar {{ $machine->name }}
             </h1>
-            <form action="{{ route('machines.update', ['id' => $machine->machine_id]) }}" method="post">
+            <form action="{{ route('machines.update', ['id' => $machine->machine_id]) }}" method="post" enctype="multipart/form-data">
               @csrf
               @method('PUT')
 
@@ -53,11 +56,11 @@
                   id="difficulty_fk"
                   class="form-control @error('difficulty') is-invalid @enderror input hacklab-input"
                   @error('difficulty') aria-invalid="true" aria-errormessage="error-difficulty" @enderror>
-                  
+
                   @foreach ( $difficulties as $difficulty )
-                    <option value="{{ $difficulty->difficulty_id }}" @selected($difficulty->difficulty_id == old('difficulty_fk', $machine->difficulty_fk)) >
-                      {{ $difficulty->name }}
-                    </option>
+                  <option value="{{ $difficulty->difficulty_id }}" @selected($difficulty->difficulty_id == old('difficulty_fk', $machine->difficulty_fk)) >
+                    {{ $difficulty->name }}
+                  </option>
                   @endforeach
 
                 </select>
@@ -66,19 +69,15 @@
                 @enderror
               </div>
 
-              <div class="field mb-5">
-                <label for="attack_type" class="form-label has-text-white label">Tipo de Ataque</label>
-                <input
-                  type="text"
-                  name="attack_type"
-                  id="attack_type"
-                  class="form-control @error('attack_type') is-invalid @enderror input hacklab-input"
-                  value="{{ old('attack_type', $machine->attack_type) }}"
-                  @error('attack_type') aria-invalid="true" aria-errormessage="error-attack_type" @enderror>
-                @error('attack_type')
-                <div id="error-attack_type" class="has-text-danger">{{ $message }}</div>
-                @enderror
-              </div>
+              <fieldset class="mb-5">
+                <legend class="form-label has-text-white label">Tipo de Ataque</legend>
+                @foreach ( $attack_types as $attack_type )
+                <label class="form-label has-text-white label">
+                  <input type="checkbox" name="attack_type_id[]" value="{{ $attack_type->attack_type_id }}" @checked(in_array($attack_type->attack_type_id, old('attack_type_id', $attacktypeIds)))>
+                  {{ $attack_type->name }}
+                </label>
+                @endforeach
+              </fieldset>
 
               <div class="field mb-5">
                 <label for="os" class="form-label has-text-white label">Sistema Operativo</label>
@@ -106,6 +105,22 @@
                 @error('status')
                 <div id="error-status" class="has-text-danger">{{ $message }}</div>
                 @enderror
+              </div>
+
+              <div class="mb-3">
+                <p class="form-label has-text-white label">Imagen Actual:</p>
+                <figure class="image mt-3">
+                  <img class="mt-3" style="max-width: 300px;" src="{{ \Illuminate\Support\Facades\Storage::url($machine->image) }}" alt="{{ $machine->name }}">
+                </figure>
+              </div>
+
+              <div class="field mb-5">
+                <label for="image" class="form-label has-text-white label">Imagen</label>
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  class="form-control input hacklab-input">
               </div>
 
               <button type="submit" class="button is-primary button is-hacklab-primary is-fullwidth mt-6">Aplicar Cambios</button>
