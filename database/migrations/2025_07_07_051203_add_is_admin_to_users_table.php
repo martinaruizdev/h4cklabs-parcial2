@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('machines', function (Blueprint $table) {
-            $table->unsignedTinyInteger('difficulty_fk');
-            $table->foreign('difficulty_fk')->references('difficulty_id')->on('difficulties');
+        Schema::table('users', function (Blueprint $table) {
+             $table->boolean('is_admin')->default(false)->after('password');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('machines', function (Blueprint $table) {
-        $table->dropForeign(['difficulty_fk']);
-        $table->dropColumn('difficulty_fk');
+        Schema::table('users', function (Blueprint $table) {
+              $table->dropColumn('is_admin');
         });
     }
 };

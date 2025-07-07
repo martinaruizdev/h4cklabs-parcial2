@@ -4,9 +4,10 @@
     <h1 class="title is-2 my-4 has-text-centered">Últimas Noticias</h1>
 
     @auth
+    @if(auth()->check() && auth()->user()->is_admin)
     <p><a href="{{ route('news.create') }}" class="publicar">Publicar una noticia</a></p>
-
-    <table class="table mt-4">
+ @endif
+    <table class="table mt-6">
         <thead>
             <tr>
                 <th>Número</th>
@@ -30,8 +31,10 @@
                 <td>
                     <div class="is-flex">
                         <a href="{{ route('news.view', [ 'id' => $new->new_id ]) }}" class="button is-primary">Ver</a>
+                         @if(auth()->check() && auth()->user()->is_admin)
                         <a href="{{ route('news.edit', [ 'id' => $new->new_id ]) }}" class="button is-secondary">Editar</a>
                         <a href="{{ route('news.delete', [ 'id' => $new->new_id ]) }}" class="button is-danger">Eliminar</a>
+                         @endif
                     </div>
                 </td>
             </tr>

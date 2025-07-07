@@ -10,12 +10,28 @@ use Illuminate\Support\Facades\Storage;
 
 class MachinesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $machines = Machine::with(['difficulty', 'attack_types'])->get();
+        $machinesQuery = Machine::with(['difficulty', 'attack_types']);
+
+        $searchParams = [
+            's-name' => $request->query('s-name'),
+            's-difficulty' => $request->query('s-difficulty'),
+        ];
+
+        if($searchParams['s-name']){
+            $machinesQuery->where('name', 'like', '%'.$searchParams['s-name'].'%');
+        };
+        if($searchParams['s-difficulty']){
+            $machinesQuery->where('difficulty_fk', '=', $searchParams['s-difficulty']);
+        }
+
+        $allMachines = $machinesQuery->get();
 
         return view('machines.index', [
-            'machines' => $machines
+            'machines' => $allMachines,
+            'difficulties' => Difficulty::all(),
+            'searchParams' => $searchParams,
         ]);
     }
 

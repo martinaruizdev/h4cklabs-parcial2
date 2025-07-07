@@ -48,7 +48,7 @@
 
                             <div class="has-text-centered mt-5">
                                 <p class="has-text-grey-light">¿No tienes una cuenta?</p>
-                                <a href="/" class="a-reg">Regístrate aquí</a>
+                                <a href="{{ route('auth.register') }}" class="a-reg">Regístrate aquí</a>
                             </div>
 
                         </div>

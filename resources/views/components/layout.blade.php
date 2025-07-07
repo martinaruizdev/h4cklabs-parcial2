@@ -28,6 +28,9 @@
         <x-nav-link route="machines.index" >Máquinas</x-nav-link>
         <x-nav-link route="news.index" >Noticias</x-nav-link>
         @auth
+         @if(auth()->user()->is_admin)
+        <x-nav-link route="dashboard" >Dashboard</x-nav-link>
+        @endif
           <li class="navbar-item">
             <form action="{{ route('auth.logout') }}" method="post">
               @csrf
@@ -39,6 +42,7 @@
           </li>
         @else
         <x-nav-link route="auth.login" >Iniciar Sesión</x-nav-link>
+        <x-nav-link route="auth.register" >Registrarse</x-nav-link>
         @endauth
       </div>
 
