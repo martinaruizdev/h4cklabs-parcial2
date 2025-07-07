@@ -18,9 +18,10 @@ Route::get('noticias/{id}', [\App\Http\Controllers\NewsController::class, 'view'
     ->name('news.view')
     ->whereNumber('id');
 
-Route::get('maquinas/{id}', [\App\Http\Controllers\MachinesController::class, 'view'])
+Route::get('maquinas/{machine}', [\App\Http\Controllers\MachinesController::class, 'view'])
     ->name('machines.view')
-    ->whereNumber('id');
+    ->middleware('required-level')
+    ->whereNumber('machine');
 
 Route::get('noticias/publicar', [\App\Http\Controllers\NewsController::class, 'create'])
     ->name('news.create')
@@ -63,9 +64,9 @@ Route::get('noticias/editar/{id}', [\App\Http\Controllers\NewsController::class,
     ->whereNumber('id')
     ->middleware('auth');
 
-Route::get('maquinas/editar/{id}', [\App\Http\Controllers\MachinesController::class, 'edit'])
+Route::get('maquinas/editar/{machine}', [\App\Http\Controllers\MachinesController::class, 'edit'])
     ->name('machines.edit')
-    ->whereNumber('id')
+    ->whereNumber('machine')
     ->middleware('auth');
 
 Route::put('noticias/editar/{id}', [\App\Http\Controllers\NewsController::class, 'update'])
@@ -86,3 +87,11 @@ Route::post('iniciar-sesion', [\App\Http\Controllers\AuthController::class, 'aut
 
 Route::post('cerrar-sesion', [\App\Http\Controllers\AuthController::class, 'logout'])
     ->name('auth.logout');
+
+Route::get('maquinas/{id}/verificar-nivel', [\App\Http\Controllers\LevelVerificationController::class, 'show'])
+    ->name('machines.level-verification.show')
+    ->whereNumber('id');
+
+Route::post('maquinas/{id}/verificar-nivel', [\App\Http\Controllers\LevelVerificationController::class, 'save'])
+    ->name('machines.level-verification.save')
+    ->whereNumber('id');

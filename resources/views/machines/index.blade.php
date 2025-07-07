@@ -35,8 +35,8 @@
                 <td>{{ Str::limit($machine->description, 80) }}</td>
                 <td>
                     <div class="is-flex">
-                        <a href="{{ route('machines.view', [ 'id' => $machine->machine_id ]) }}" class="button is-primary">Ver</a>
-                        <a href="{{ route('machines.edit', [ 'id' => $machine->machine_id ]) }}" class="button is-secondary">Editar</a>
+                        <a href="{{ route('machines.view', [ 'machine' => $machine->machine_id ]) }}" class="button is-primary">Ver</a>
+                        <a href="{{ route('machines.edit', [ 'machine' => $machine->machine_id ]) }}" class="button is-secondary">Editar</a>
                         <a href="{{ route('machines.delete', [ 'id' => $machine->machine_id ]) }}" class="button is-danger">Eliminar</a>
                     </div>
                 </td>
@@ -60,7 +60,7 @@
                     @endforeach | {{ $machine->os }}</p>
                     <p class="mb-3"><strong>Estado:</strong> {{ strtoupper($machine->status) }}</p>
                     <p class="mb-4">{{ Str::limit($machine->description, 100) }}</p>
-                    <a href="{{ route('machines.view', [ 'id' => $machine->machine_id ]) }}" class="button is-primary is-fullwidth has-text-weight-semibold">Ver Más</a> 
+                    <a href="{{ route('machines.view', [ 'machine' => $machine->machine_id ]) }}" class="button is-primary is-fullwidth has-text-weight-semibold">Ver Más</a> 
                 </div>
             </div>
         </div>

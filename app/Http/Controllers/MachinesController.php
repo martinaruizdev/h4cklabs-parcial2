@@ -19,10 +19,10 @@ class MachinesController extends Controller
         ]);
     }
 
-    public function view(int $machine_id)
+    public function view(Machine $machine)
     {
         return view('machines.view', [
-            'machine' => Machine::findOrFail($machine_id)
+            'machine' => $machine
         ]);
     }
 
@@ -85,10 +85,13 @@ class MachinesController extends Controller
             ->with('feedback.message', '¡La máquina <b>' . e($machine->name) . '</b> se eliminó correctamente!');
     }
 
-    public function edit(int $machine_id)
+    public function edit(Machine $machine)
     {
+
+
+
         return view('machines.edit', [
-            'machine' => Machine::findOrFail($machine_id),
+            'machine' => $machine,
             'attack_types' => AttackType::orderBy('name')->get(),
             'difficulties' => Difficulty::all()
         ]);
@@ -120,16 +123,16 @@ class MachinesController extends Controller
         $input = $request->except('_token', '_method');
         $oldImg = $machine->image;
 
-        $machine->update($input);
-        $machine->attack_types()->sync($request->input('attack_type_id', []));
-
-        if($request->hasFile('image') && $oldImg){
+        if ($request->hasFile('image') && $oldImg) {
             Storage::delete($oldImg);
         }
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $input['image'] = $request->file('image')->store('images', 'public');
         }
+
+        $machine->update($input);
+        $machine->attack_types()->sync($request->input('attack_type_id', []));
 
         return redirect()
             ->route('machines.index')

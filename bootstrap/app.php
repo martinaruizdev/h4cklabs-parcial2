@@ -19,6 +19,10 @@ return Application::configure(basePath: dirname(__DIR__))
             session()->flash('feedback.type', 'is-danger');
             return route('auth.login');
         });
+
+        $middleware->alias([
+            'required-level' => \App\Http\Middleware\RequireExtreme::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

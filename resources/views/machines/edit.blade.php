@@ -120,7 +120,9 @@ $attacktypeIds = $machine->attack_types->pluck('attack_type_id')->all();
                   type="file"
                   name="image"
                   id="image"
-                  class="form-control input hacklab-input">
+                  class="form-control input hacklab-input" 
+                  value="{{ old('image', $machine->image) }}"
+                  >
               </div>
 
               <button type="submit" class="button is-primary button is-hacklab-primary is-fullwidth mt-6">Aplicar Cambios</button>
