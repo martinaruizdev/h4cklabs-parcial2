@@ -105,3 +105,35 @@ Route::get('maquinas/{id}/verificar-nivel', [\App\Http\Controllers\LevelVerifica
 Route::post('maquinas/{id}/verificar-nivel', [\App\Http\Controllers\LevelVerificationController::class, 'save'])
     ->name('machines.level-verification.save')
     ->whereNumber('id');
+
+Route::get('perfil', [\App\Http\Controllers\ProfileController::class, 'show'])
+    ->name('profile.show')
+    ->middleware('auth');
+
+Route::get('perfil/editar', [\App\Http\Controllers\ProfileController::class, 'edit'])
+    ->name('profile.edit')
+    ->middleware('auth');
+
+Route::put('perfil', [\App\Http\Controllers\ProfileController::class, 'update'])
+    ->name('profile.update')
+    ->middleware('auth');
+
+Route::get('usuarios/{id}', [\App\Http\Controllers\UserController::class, 'show'])
+    ->name('users.show')
+    ->middleware('auth', 'isAdmin')
+    ->whereNumber('id');
+
+Route::get('usuarios/editar/{id}', [\App\Http\Controllers\UserController::class, 'edit'])
+    ->name('users.edit')
+    ->middleware('auth', 'isAdmin')
+    ->whereNumber('id');
+
+Route::put('usuarios/editar/{id}', [\App\Http\Controllers\UserController::class, 'update'])
+    ->name('users.update')
+    ->middleware('auth', 'isAdmin')
+    ->whereNumber('id');
+
+Route::delete('usuarios/{id}/eliminar', [\App\Http\Controllers\UserController::class, 'destroy'])
+    ->name('users.destroy')
+    ->middleware('auth', 'isAdmin')
+    ->whereNumber('id');

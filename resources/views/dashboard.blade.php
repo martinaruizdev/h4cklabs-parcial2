@@ -28,9 +28,9 @@
         </td>
         <td>
           <div class="buttons">
-            <a href="/" class="button is-primary is-small">Ver</a>
-            <a href="/" class="button is-dark is-small">Editar</a>
-            <form action="/" method="POST" style="display:inline">
+            <a href="{{ route('users.show', $user->id) }}" class="button is-primary is-small">Ver</a>
+            <a href="{{ route('users.edit', $user->id) }}" class="button is-dark is-small">Editar</a>
+            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline">
               @csrf
               @method('DELETE')
               <button type="submit" class="button is-danger is-small" onclick="return confirm('¿Estás seguro?')">Eliminar</button>

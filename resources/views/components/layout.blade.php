@@ -31,15 +31,26 @@
          @if(auth()->user()->is_admin)
         <x-nav-link route="dashboard" >Dashboard</x-nav-link>
         @endif
-          <li class="navbar-item">
-            <form action="{{ route('auth.logout') }}" method="post">
-              @csrf
-              <button type="submit" class="navbar-item">
-                {{ auth()->user()->email }} (Cerrar Sesion)
-              </button>
-            </form>
-          
-          </li>
+  <li class="navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link" href="#">
+      {{ auth()->user()->name }}
+    </a>
+
+    <div class="navbar-dropdown">
+      <a href="{{ route('profile.show') }}" class="navbar-item">
+        Mi Perfil
+      </a>
+
+      <hr class="navbar-divider">
+
+      <form action="{{ route('auth.logout') }}" method="post" class="navbar-item p-0">
+        @csrf
+        <button type="submit" class="button is-white is-fullwidth has-text-left">
+          Cerrar Sesión
+        </button>
+      </form>
+    </div>
+  </li>
         @else
         <x-nav-link route="auth.login" >Iniciar Sesión</x-nav-link>
         <x-nav-link route="auth.register" >Registrarse</x-nav-link>
